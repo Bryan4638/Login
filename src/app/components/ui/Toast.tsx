@@ -83,7 +83,7 @@ export const Toast: React.FC<ToastProps> = ({ type, message, title, id }) => {
 
   return (
     <div
-      className={`w-52 max-w-full rounded-2xl shadow-lg border p-3 mb-2 ${getBackgroundColor()}`}
+      className={`w-52 max-w-full rounded-2xl shadow-lg p-3 mb-2 ${getBackgroundColor()}`}
     >
       <div className="flex">
         <div className="flex-shrink-0">{getIcon()}</div>
