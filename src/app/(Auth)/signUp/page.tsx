@@ -18,7 +18,7 @@ function page() {
   const {showToast} = useToastStore()
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    showToast("success", "usuario registrado con exito", "Sign Up")
+    showToast("success", "User successfully registered", "Success!")
     console.log({ email, password, agreedToTerms });
   };
 

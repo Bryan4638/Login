@@ -11,14 +11,12 @@ interface Toast {
   title?: string;
 }
 
-// Definimos el estado del store
 interface ToastStore {
   toasts: Toast[];
   showToast: (type: ToastType, message: string, title?: string) => void;
   removeToast: (id: number) => void;
 }
 
-// Creamos el store
 const useToastStore = create<ToastStore>()((set) => ({
   toasts: [],
   showToast: (type, message, title) => {

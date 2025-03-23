@@ -5,12 +5,14 @@ import useToastStore from "../../store/useToastStore";
 export type ToastType = "success" | "error" | "warning" | "info";
 
 interface ToastProps {
+  id: number;
   type: ToastType;
   message: string;
   title?: string;
 }
 
-export const Toast: React.FC<ToastProps> = ({ type, message, title }) => {
+export const Toast: React.FC<ToastProps> = ({ type, message, title, id }) => {
+  const { removeToast } = useToastStore();
   const getIcon = () => {
     switch (type) {
       case "success":
@@ -90,10 +92,12 @@ export const Toast: React.FC<ToastProps> = ({ type, message, title }) => {
             <p className={`font-medium ${getTextColor()}`}>{getTitle()}</p>
             <button
               type="button"
+              name="close"
+              onClick={() => removeToast(id)}
               className="inline-flex text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 focus:outline-none"
               aria-label="Close"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5 dark:text-neutral-400 text-neutral-800" />
             </button>
           </div>
           <p className={`text-sm mt-1 ${getTextColor()}`}>{message}</p>
@@ -110,6 +114,7 @@ export const ToastContainer: React.FC = () => {
       {toasts.map((toast) => (
         <Toast
           key={toast.id}
+          id={toast.id}
           type={toast.type}
           message={toast.message}
           title={toast.title}

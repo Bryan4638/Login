@@ -5,6 +5,7 @@ import { Input } from "../../components/ui/Input";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import Link from "next/link";
 import { Divider } from "../../components/ui/Divider";
+import useToastStore from "../../store/useToastStore";
 
 function page() {
   const [email, setEmail] = useState("");
@@ -13,9 +14,12 @@ function page() {
   const [showPassword, setShowPassword] = useState(false);
 
   const { isSidebarOpen } = useSideBarStore();
+  const {showToast}= useToastStore()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    showToast("success", "Successful login", "Success!")
+
     console.log({ email, password, agreedToTerms });
   };
   return (
